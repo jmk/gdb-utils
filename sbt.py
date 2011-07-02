@@ -17,16 +17,6 @@ def get_cols(fallback=-1):
 
     return cols
 
-def get_frames():
-    # XXX: gdb 7.2-23 doesn't have gdb.newest_frame(), so we can only start at
-    # the selected frame. note that if the selected frame is not the newest,
-    # the frame numbers will be wrong. Ugh.
-    frame = gdb.selected_frame()
-
-    while (frame):
-        yield frame
-        frame = frame.older()
-
 def trunc(string, max, fromEnd=False):
     if len(string) <= max:
         return string
