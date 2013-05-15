@@ -21,7 +21,7 @@ def trunc(string, max, fromEnd=False):
     if len(string) <= max:
         return string
 
-    ellipsis = "..."
+    ellipsis = u"\u2026"
     newLen = int(max - len(ellipsis))
 
     if (fromEnd):
@@ -147,7 +147,7 @@ def pyframe(frame):
 def sbt():
     import os
 
-    auto_load_solibs()
+    auto_load_symbols(verbose=True)
 
     # Configure table.
     table = Table([
@@ -163,7 +163,7 @@ def sbt():
     print_div()
 
     i = 0
-    for frame in get_frames():
+    for frame in get_all_frames():
         num = str(i)
 
         # Determine function name.
@@ -187,7 +187,7 @@ def sbt():
         else:
             source = ""
 
-        print table.formatLine([num, name, lib, source, num])
+        print table.formatLine([num, name, lib, source, num]).encode("utf8")
 
         # XXX python
         pyinfo = pyframe(frame)
