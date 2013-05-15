@@ -9,6 +9,32 @@ For more information, check out the [official documentation][1] for python scrip
 [1]: http://sourceware.org/gdb/current/onlinedocs/gdb/Python.html
 
 
+#### Quick Installation
+
+First, clone the git repository into a location of your choice. For example:
+
+    git clone git://git-master/gdb-utils.git ~/.gdb-utils
+
+Then, Add the following to your `~/.gdbinit` file:
+
+    # Load GDB helper scripts.
+    source ~/.gdb-utils/auto_load_solibs.py
+    source ~/.gdb-utils/sbt.py
+
+    # Don't load symbols from shared libraries automatically.
+    set auto-solib-add off
+
+Optionally, you may declare aliases to the python entry points, such as:
+
+    define mybt()
+      python sbt()
+    end
+
+    define loadsyms()
+      python auto_load_solibs(verbose=True)
+    end
+
+
 #### Loading Debug Symbols On Demand ###
 
 For very large applications (with debug binaries/libraries that are, say, hundreds of MBs in size), gdb can spend a lot of time loading debug symbols for every loaded library.
