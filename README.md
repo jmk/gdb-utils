@@ -8,6 +8,7 @@ For more information, check out the [official documentation][1] for python scrip
 
 [1]: http://sourceware.org/gdb/current/onlinedocs/gdb/Python.html
 
+
 #### Loading Debug Symbols On Demand ###
 
 For very large applications (with debug binaries/libraries that are, say, hundreds of MBs in size), gdb can spend a lot of time loading debug symbols for every loaded library.
@@ -22,6 +23,11 @@ That's where you can use this (or alias this to your liking):
 
     python auto_load_solibs()
 
+If you need to manually load symbols (to set a breakpoint, for example), you can use the built-in `sharedlibrary` command (`sha` for short) to load symbols for a particular library or set of libraries:
+
+    sharedlibrary libfoo.so
+
+
 #### Smart Backtraces ####
 
 `sbt.py` provides a more intelligent alternative to the built-in `backtrace` command, which:
@@ -30,6 +36,7 @@ That's where you can use this (or alias this to your liking):
 * Respects the width of the terminal, intelligently truncating content to fit. (A big help when dealing with libraries like boost that generate incredibly long symbol names.)
 * Displays inline python frame information (file/line number) for relevant frames.
 * Utilizes ANSI colors for clarity.
+
 
 ### Caveats ###
 
