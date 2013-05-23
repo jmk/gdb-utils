@@ -26,12 +26,12 @@ Then, Add the following to your `~/.gdbinit` file:
 
 Optionally, you may declare aliases to the python entry points, such as:
 
-    define mybt()
+    define mybt
       python sbt()
     end
 
-    define loadsyms()
-      python auto_load_solibs(verbose=True)
+    define loadsyms
+      python auto_load_symbols(verbose=True)
     end
 
 
